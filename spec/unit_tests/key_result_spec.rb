@@ -22,5 +22,10 @@ RSpec.describe KeyResult, type: :model do
       subject.user_id = nil
       expect(subject).to_not be_valid
     end
+
+    it 'goal should be present' do
+      subject.goal_id = nil
+      expect(subject).to_not be_valid
+    end
   end
 end

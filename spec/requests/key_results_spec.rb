@@ -1,7 +1,7 @@
 RSpec.describe KeyResultsController do
   describe 'KeyResults API', type: :request do
     before do
-  	  user = create(:user)
+  	  user  = create(:user)
   	  @goal = create(:goal, user_id: user.id)
       create(:key_result, user_id: user.id, goal_id: @goal.id )
 
@@ -46,9 +46,11 @@ RSpec.describe KeyResultsController do
 
     context 'post create fails' do
       before do
-        post '/key_results', params: { status: 'in_progress', 
-                                       goal_id: @goal.id }.to_json, headers: @auth_headers
-          @json_response = JSON.parse(response.body)             
+        post '/key_results', headers: @auth_headers,
+                             params: { status: 'in_progress', 
+                                       goal_id: @goal.id }.to_json
+
+        @json_response = JSON.parse(response.body)             
       end
 
       it 'returns validation errors' do

@@ -16,20 +16,18 @@ class GoalsController < ApplicationController
   end
 
   def show
-    goal        = current_user.goals.find(params[:id])
-    key_results = goal.key_results
-    progress    = key_results.count.zero? ? 0 : (100 * key_results.completed.count / key_results.count)
+    goal = current_user.goals.find(params[:id])
     
     render json: { title:      goal.title, 
                    start_date: goal.start_date, 
                    end_date:   goal.end_date,
-                   progress:   "#{progress} %",
+                   progress:   "#{goal.calculate_progress} %",
                    status: 200 }
   end
 
   private
 
   def goal_params
-  	params.require(:goal).permit(:title, :start_date, :end_date)
+    params.require(:goal).permit(:title, :start_date, :end_date)
   end
 end

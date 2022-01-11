@@ -1,8 +1,8 @@
 class KeyResult < ApplicationRecord
-	belongs_to :user
-	belongs_to :goal
+  belongs_to :user
+  belongs_to :goal
 
-	enum status: [:not_started, :in_progress, :completed]
+  validates  :title, presence: true
 
-	validates :title, presence: true
+  enum status: %w[not_started in_progress completed]
 end

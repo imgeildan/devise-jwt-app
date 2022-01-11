@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :goal do
-    title 		{ 'title' }
-    association :user
+  	association :user
+    title       { 'title' }
     start_date  { Date.today } 
     end_date    { Date.tomorrow } 
   end
